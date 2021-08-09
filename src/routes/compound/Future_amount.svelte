@@ -32,6 +32,8 @@
         timeInYears
       );
     
+    rateOfInterest = rateOfInterest/100;
+    
     principalAmount *
       Math.pow(
         1 + rateOfInterest / compoundFrequency,
