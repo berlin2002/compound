@@ -18,8 +18,7 @@
   // document.querySelector("#monthly_cut").innerHTML = monthly_cut;
 
   function futAmount() {
-    "Principal:",
-      principalAmount,
+
       console.log(
         "Principal:",
         principalAmount,
@@ -32,6 +31,7 @@
         "Time:",
         timeInYears
       );
+    
     principalAmount *
       Math.pow(
         1 + rateOfInterest / compoundFrequency,
@@ -52,7 +52,7 @@
     // let annual_cut = futureAmount * rateOfInterest;
     // let monthly_cut = annual_cut / 12;
 
-    // futureAmount = futureAmount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67
+    futureAmount = futureAmount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67
     // annual_cut = annual_cut.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67
     // monthly_cut = monthly_cut.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67
   }
@@ -153,9 +153,9 @@
       <div class=" md:flex md:flex-col md:items-center pt-5">
         <div>
           <h4>Compounded Balance</h4>
-          <h1><span>$</span><span /></h1>
+          <h1><span>$</span>{futureAmount}<span /></h1>
           <h5>
-            Annual Earnings <span>${futureAmount}</span><span />
+            Annual Earnings <span>$</span><span />
           </h5>
           <h5>Monthly Earnings <span>$</span><span /></h5>
         </div>
