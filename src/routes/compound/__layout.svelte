@@ -14,7 +14,7 @@
                 <a
                   class="text-pink-900 hover:text-blue-600"
                   sveltekit:prefetch
-                  href="/compound/Interest">Compound Interest</a
+                  href="/compound/Future_Amount">Future Amount</a
                 >
               </li>
 
@@ -30,7 +30,7 @@
                 <a
                   class="text-pink-900 hover:text-blue-600"
                   sveltekit:prefetch
-                  href="/compound/Rate">Compound Rate</a
+                  href="/compound/Interest_rate">Interest Rate</a
                 >
               </li>
 

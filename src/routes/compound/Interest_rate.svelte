@@ -1,61 +1,24 @@
 <script>
   import Animate from "$lib/Animate.svelte";
-  let principalAmount
-  let rateOfInterest
-  let timeInYears
-  let periodics
-
-  let annual_cut = futureAmount*rateOfInterest;
-  let monthly_cut = annual_cut/12;
-  let futureAmount;
-
-  futureAmount = principalAmount *
-    (Math.pow((1 + (rateOfInterest / compoundFrequency)), (compoundFrequency * timeInYears)));
-
-    periodicTotal = periodics * ((Math.pow((1+(rateOfInterest/compoundFrequency)),(compoundFrequency*timeInYears)) - 1)/(rateOfInterest/compoundFrequency));
-
-    futureAmount = futureAmount + periodicTotal;
-
-
-  futureAmount = (futureAmount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // 12,345.67
-  annual_cut = (annual_cut).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // 12,345.67
-  monthly_cut = (monthly_cut).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); // 12,345.67
-
-  document.querySelector('#answer').innerHTML = futureAmount;
-  document.querySelector('#annual_cut').innerHTML = annual_cut;
-  document.querySelector('#monthly_cut').innerHTML = monthly_cut;
-
-  function compoundInterest() { 
-   futureAmount;
-   compoundFrequency = 1.0;
-   periodicTotal;
-  }
-
-  function compoundReset() {
-    futureAmount = "0.00";
-    annual_cut = "0.00";
-    monthly_cut = "0.00";
-    principalAmount = "";
-  }
 </script>
 
 <Animate>
   <section class="w-full">
     <div class="w-5/6 max-w-screen-xl mb-8 mt-4 mx-auto  bg-yellow-200 ">
-      <h1 class="text-pink-800 text-3xl md:text-5xl">Compound Interest</h1>
+      <h1 class="text-pink-800 text-3xl md:text-5xl">Interest Rate</h1>
 
       <div class=" md:flex md:flex-col md:items-center pt-5">
         <div class="input-group ">
+
           <input
             class="bg-gray-200 md:relative"
             type="number"
             name=""
-            id="principal"
+            id="starting"
             placeholder=" "
-           
           />
 
-          <label for="principal">Principal</label>
+          <label for="starting">Starting Balance</label>
 
           <span class="p-2 md:absolute">$.00</span>
         </div>
@@ -63,34 +26,18 @@
 
       <div class=" md:flex md:flex-col md:items-center pt-5">
         <div class="input-group ">
+
           <input
             class="bg-gray-200 md:relative"
             type="number"
             name=""
-            id="contributions"
+            id="final"
             placeholder=" "
-           
           />
 
-          <label for="contributions">Additional Contributions Annually</label>
+          <label for="final">Final Balance</label>
 
           <span class="p-2 md:absolute">$.00</span>
-        </div>
-      </div>
-
-      <div class=" md:flex md:flex-col md:items-center pt-5">
-        <div class="input-group ">
-          <input
-            class="bg-gray-200 md:relative"
-            type="number"
-            name=""
-            id="rate"
-            placeholder=" "
-          />
-
-          <label for="rate">Interest Rate</label>
-
-          <span class="p-2 md:absolute">%</span>
         </div>
       </div>
 
@@ -102,10 +49,9 @@
             name=""
             id="years"
             placeholder=" "
-            
           />
 
-          <label for="years">Years</label>
+          <label for="years">After how many Years?</label>
 
           <span class="p-2 md:absolute">Years</span>
         </div>
@@ -113,24 +59,18 @@
 
       <div class=" md:flex md:flex-col md:items-center pt-5">
         <div class="md:space-x-8 space-x-8 m-4">
-          <button
-            class="btn md:py-2 md:px-8 py-2 px-2 hover:text-red-300"
+          <button class="btn md:py-2 md:px-8 py-2 px-2 hover:text-red-300"
             >Calculate</button
           >
-          <button
-            class="btn  md:py-2 md:px-8 py-2 px-2 hover:text-blue-500"
+          <button class="btn  md:py-2 md:px-8 py-2 px-2 hover:text-blue-500"
             >Reset</button
           >
         </div>
       </div>
 
       <div class=" md:flex md:flex-col md:items-center pt-5">
-        <div>
-          <h4>Compounded Balance</h4>
-          <h1><span>$</span><span> </span></h1>
-          <h5>Annual Earnings <span>$</span><span>{annual_cut} </span></h5>
-          <h5>Monthly Earnings <span>$</span><span /></h5>
-        </div>
+        <h4>Interest Rate</h4>
+        <h1><span /><span>0</span>%</h1>
       </div>
     </div>
   </section>

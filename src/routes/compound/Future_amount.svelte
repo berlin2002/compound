@@ -1,24 +1,87 @@
 <script>
   import Animate from "$lib/Animate.svelte";
+  let futureAmount;
+  let compoundFrequency = 1.0;
+  let principalAmount;
+  let rateOfInterest;
+  let timeInYears;
+  let periodics;
+  let periodicTotal;
+
+  // A = Future Amount
+  // P = Principal Amount
+  // n = compount frequency
+  // t = time in years
+
+  // document.querySelector("#answer").innerHTML = futureAmount;
+  // document.querySelector("#annual_cut").innerHTML = annual_cut;
+  // document.querySelector("#monthly_cut").innerHTML = monthly_cut;
+
+  function futAmount() {
+    "Principal:",
+      principalAmount,
+      console.log(
+        "Principal:",
+        principalAmount,
+        "Interest:",
+        rateOfInterest,
+        "Periodics:",
+        periodics,
+        "Frequency:",
+        compoundFrequency,
+        "Time:",
+        timeInYears
+      );
+    principalAmount *
+      Math.pow(
+        1 + rateOfInterest / compoundFrequency,
+        compoundFrequency * timeInYears
+      );
+
+    periodicTotal =
+      periodics *
+      ((Math.pow(
+        1 + rateOfInterest / compoundFrequency,
+        compoundFrequency * timeInYears
+      ) -
+        1) /
+        (rateOfInterest / compoundFrequency));
+
+    futureAmount = futureAmount + periodicTotal;
+
+    // let annual_cut = futureAmount * rateOfInterest;
+    // let monthly_cut = annual_cut / 12;
+
+    // futureAmount = futureAmount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67
+    // annual_cut = annual_cut.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67
+    // monthly_cut = monthly_cut.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67
+  }
+
+  function compoundReset() {
+    futureAmount = "0.00";
+    annual_cut = "0.00";
+    monthly_cut = "0.00";
+    principalAmount = "";
+  }
 </script>
 
 <Animate>
   <section class="w-full">
     <div class="w-5/6 max-w-screen-xl mb-8 mt-4 mx-auto  bg-yellow-200 ">
-      <h1 class="text-pink-800 text-3xl md:text-5xl">Compound Rate</h1>
+      <h1 class="text-pink-800 text-3xl md:text-5xl">Future Amount</h1>
 
       <div class=" md:flex md:flex-col md:items-center pt-5">
         <div class="input-group ">
-
           <input
             class="bg-gray-200 md:relative"
             type="number"
             name=""
-            id="starting"
+            id="principal"
             placeholder=" "
+            bind:value={principalAmount}
           />
 
-          <label for="starting">Starting Balance</label>
+          <label for="principal">Principal</label>
 
           <span class="p-2 md:absolute">$.00</span>
         </div>
@@ -26,18 +89,35 @@
 
       <div class=" md:flex md:flex-col md:items-center pt-5">
         <div class="input-group ">
-
           <input
             class="bg-gray-200 md:relative"
             type="number"
             name=""
-            id="final"
+            id="contributions"
             placeholder=" "
+            bind:value={periodics}
           />
 
-          <label for="final">Final Balance</label>
+          <label for="contributions">Additional Contributions Annually</label>
 
           <span class="p-2 md:absolute">$.00</span>
+        </div>
+      </div>
+
+      <div class=" md:flex md:flex-col md:items-center pt-5">
+        <div class="input-group ">
+          <input
+            class="bg-gray-200 md:relative"
+            type="number"
+            name=""
+            id="rate"
+            placeholder=" "
+            bind:value={rateOfInterest}
+          />
+
+          <label for="rate">Interest Rate</label>
+
+          <span class="p-2 md:absolute">%</span>
         </div>
       </div>
 
@@ -48,10 +128,11 @@
             type="number"
             name=""
             id="years"
-            placeholder=" "
+            placeholder=""
+            bind:value={timeInYears}
           />
 
-          <label for="years">After how many Years?</label>
+          <label for="years">Years</label>
 
           <span class="p-2 md:absolute">Years</span>
         </div>
@@ -59,8 +140,9 @@
 
       <div class=" md:flex md:flex-col md:items-center pt-5">
         <div class="md:space-x-8 space-x-8 m-4">
-          <button class="btn md:py-2 md:px-8 py-2 px-2 hover:text-red-300"
-            >Calculate</button
+          <button
+            class="btn md:py-2 md:px-8 py-2 px-2 hover:text-red-300"
+            on:click={futAmount}>Calculate</button
           >
           <button class="btn  md:py-2 md:px-8 py-2 px-2 hover:text-blue-500"
             >Reset</button
@@ -69,8 +151,14 @@
       </div>
 
       <div class=" md:flex md:flex-col md:items-center pt-5">
-        <h4>Interest Rate</h4>
-        <h1><span /><span>0</span>%</h1>
+        <div>
+          <h4>Compounded Balance</h4>
+          <h1><span>$</span><span /></h1>
+          <h5>
+            Annual Earnings <span>${futureAmount}</span><span />
+          </h5>
+          <h5>Monthly Earnings <span>$</span><span /></h5>
+        </div>
       </div>
     </div>
   </section>

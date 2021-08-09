@@ -1,8 +1,8 @@
 <script>
   import Animate from "$lib/Animate.svelte";
-  import Interest from "./Interest.svelte";
+  import Interest from "./Future_amount.svelte";
   import Principal from "./Principal.svelte";
-  import Rate from "./Rate.svelte";
+  import Rate from "./Interest_rate.svelte";
   import Time from "./Time.svelte";
 </script>
 
