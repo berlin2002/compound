@@ -8,10 +8,11 @@
   let periodics;
   let periodicTotal;
 
-  // A = Future Amount
-  // P = Principal Amount
-  // n = compount frequency
-  // t = time in years
+  // A = futureAmount
+  // P = principalAmount
+  // n = compoundFrequency
+  // t = timeInYears
+  // r = rateOfInterest
 
   // document.querySelector("#answer").innerHTML = futureAmount;
   // document.querySelector("#annual_cut").innerHTML = annual_cut;
